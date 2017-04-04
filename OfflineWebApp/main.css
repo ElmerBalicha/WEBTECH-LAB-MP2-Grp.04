@@ -1,0 +1,11 @@
+#invTable td {
+	border: 1px solid black;
+	font-size: 30px;
+}
+#remitTable td {
+	border: 1px solid black;
+	font-size: 30px;	
+}
+#remitThisOne {
+	font-size: 25px;
+}
