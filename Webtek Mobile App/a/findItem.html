@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SLU</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="../main.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="second">
+            <div class="HBG">
+                <header>
+                    <h1>BOOKSTORE MANAGER</h1>
+                </header>
+            </div>
+            <div class="search">
+                <input type="text" id="searchInput" onkeyup="searchInv()" placeholder="&nbsp;&#xf002;&nbsp; Search Item">
+            </div>
+                <table id="invTable">
+                    <thead>
+                        <tr class="row header">
+                        <th class="cell">Items</th>
+                        <th class="cell">Quantity</th>
+                        <th class="cell">Price(PHP)</th>
+                        <th class="cell">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"> 
+
+                    </tbody>  
+                </table>
+            <div class="click">
+                <form action="../index.html">
+                    <button>Back</button>
+                </form>
+            </div>
+        </section> 
+    </div>    
+</body>
+</html>
