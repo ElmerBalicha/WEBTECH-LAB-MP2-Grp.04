@@ -35,6 +35,26 @@ function soldIsGreater() {
 	alert("No more available stock!");
 	throw new Error("No more available stock!");		
 }
+var sum = 0;
+function breakdown() {
+		 if (localStorage.remitToAccounting) {
+	 		remitArray = JSON.parse(localStorage.remitToAccounting);
+			for (var c = 0; c < remitArray.length; c++) {
+				var a = parseInt(remitArray[c].pricesold);
+				sum += a;
+				document.getElementById("remitThisOne").innerHTML = "Total Sales as of : PHP " +sum;
+
+				remitTable(remitArray[c].itemsold, remitArray[c].soldquantity, remitArray[c].origPrice, remitArray[c].pricesold);
+			}
+		} else {
+			document.getElementById("remitThisOne").innerHTML = "No sales at the moment";
+			document.getElementById("itemR").innerHTML = "";
+			document.getElementById("quantityR").innerHTML = "";
+			document.getElementById("priceR").innerHTML = "";
+
+		}
+
+}
 
 var itemsArray = [];
 
@@ -351,4 +371,19 @@ function onSales() {
 	} 
 
 	}
+}
+function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse) {
+
+	var table = document.getElementById('remitTable');
+	var row = table.insertRow();
+	var itemsoldCell = row.insertCell(0);
+	var quantitySoldCell = row.insertCell(1);
+	var priceOrigSoldCell = row.insertCell(2);
+	var priceSoldCell = row.insertCell(3);
+
+
+	itemsoldCell.innerHTML = itemsold;
+	quantitySoldCell.innerHTML = quantitySold;
+	priceOrigSoldCell.innerHTML = origPriceParse;
+	priceSoldCell.innerHTML = priceSoldParse;
 }
