@@ -19,6 +19,23 @@ function remove(index) {
 
 	a.removeChild(rmvDiv);
 }
+function notNumber() {
+	alert("Please enter a number!");
+	throw new Error("Please enter a number!");
+}
+function emptyInput() {
+	alert("Please fill up what is needed");
+	throw new Error("Please fill up what is needed");	
+}
+function noMatch() {
+	alert("No match! Please check your inventory");
+	throw new Error("No match! Please check your inventory");	
+}
+function soldIsGreater() {
+	alert("No more available stock!");
+	throw new Error("No more available stock!");		
+}
+
 var itemsArray = [];
 
 function save() {
