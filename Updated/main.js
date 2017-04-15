@@ -35,6 +35,40 @@ function soldIsGreater() {
 	alert("No more available stock!");
 	throw new Error("No more available stock!");		
 }
+function low() {
+	var count = 0;
+		 if (localStorage.ItemsAdded) {
+	 			itemsArray = JSON.parse(localStorage.ItemsAdded);
+					for (var i = 0; i < itemsArray.length; i++) {
+						var theLimitParsed = parseInt(itemsArray[i].Limit);
+						var theQuantityOrig =  parseInt(itemsArray[i].Quantity);
+						if (theLimitParsed >= theQuantityOrig) {
+							document.getElementById("noResult").innerHTML = "Items with critical quantities";
+								document.getElementById("itemQ").innerHTML = "Items";
+								document.getElementById("quantityQ").innerHTML = "Quantity";
+								document.getElementById("priceQ").innerHTML = "Minimum Quantity";
+								count++;
+							limitTable(itemsArray[i].Item, theQuantityOrig, itemsArray[i].Limit);
+					} else if (count == 0){
+								document.getElementById("noResult").innerHTML = "There are no items with critical quantity at the moment";
+
+			}
+		}
+	}
+}
+function limitTable(item, quantity, price) {
+	var table = document.getElementById('lowTable');
+	var row = table.insertRow();
+	var itemLimCell = row.insertCell(0);
+	var quantityLimCell = row.insertCell(1);
+	var priceLimCell = row.insertCell(2);
+
+
+	itemLimCell.innerHTML = item;
+	quantityLimCell.innerHTML = quantity;
+	priceLimCell.innerHTML = price;
+}
+
 var sum = 0;
 function breakdown() {
 		 if (localStorage.remitToAccounting) {
