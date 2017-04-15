@@ -144,3 +144,90 @@ function save() {
 	}
 	
 }
+function addRestock() {
+	var div = document.createElement('div');
+	div.setAttribute('id', 'res_'+myIndex);
+
+	var add_btn =document.getElementById('addRestock');
+
+
+	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
+	document.getElementById('res_-1').appendChild(div);
+
+	document.getElementById('res_-1').insertBefore(div,add_btn);
+	myIndex++;
+}
+
+function removeRestock(index) {
+	var a = document.getElementById('res_-1');
+	var rmvDiv = document.getElementById('res_'+index);
+
+	a.removeChild(rmvDiv);
+}
+
+function Restock() {
+	var newQuantityParse;
+	var match = false;
+	if (localStorage.ItemsAdded !== undefined) {
+		itemsArray = JSON.parse(localStorage.ItemsAdded);
+	}
+
+	var myIndex = -1;
+	var restockItems = document.getElementById('res_'+myIndex);
+
+	for (i = 0; i <= restockItems.children.length; i++ ) {
+		if (i == 0) {
+			item = restockItems.children[0].value;
+				if (item == "") {
+					item = restockItems.children[0].select();
+					emptyInput();
+				}
+
+		}
+		if (i == 1) {
+			quantity = restockItems.children[1].value;
+			quantityParse = parseInt(quantity);
+				if (quantity == "") {
+					quantity = restockItems.children[1].select();
+					emptyInput();
+				}
+					if (isNaN(quantity)) {
+						quantity = restockItems.children[1].select();
+						notNumber();
+					} 
+						for (var c = 0; c < itemsArray.length; c++) {
+							if (item == itemsArray[c].Item) {
+								newQuantityParse = parseInt(itemsArray[c].Quantity);
+								newQuantityParse += quantityParse;
+								itemsArray[c].Quantity = newQuantityParse;
+								match = true;
+				} 
+			}
+							if (!match) {
+								item = restockItems.children[0].select();
+								noMatch();
+							}	
+							match = false;
+		}
+
+		if (i >= 2) {
+			myIndex++;
+			restockItems = document.getElementById('res_'+myIndex);
+			i = -1;
+			if (restockItems == null) {
+				if(confirm("Are you sure to add your new stocks?")) {
+						localStorage.ItemsAdded = JSON.stringify(itemsArray);
+						alert("Success! Item(s) has been restocked. Redirecting to your inventory...");
+						window.location = "inventory.html";
+						break;
+				} else {
+						alert("Your new stocks was not added")
+						break;
+				} 
+
+			}
+			continue;
+	} 
+
+	}
+}
