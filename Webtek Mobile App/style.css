@@ -79,8 +79,20 @@ header{
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold; 
-    width: 60%;
+    margin-left: 10px;
+    width: 30%;
 }
+
+#addqty {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold; 
+    margin-left: 10px;
+    width: 20%;
+}
+
 
 .search input[type=text]{
     font-family:FontAwesome;
@@ -161,6 +173,14 @@ button{
     padding: 10px;
     font-size: 1.5em;
     border: 0px solid;
+}
+
+#inputButton {
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 1.5em;
+    border: 0px solid;
+    margin-left: 10px;
 }
 
 /* TABLES */

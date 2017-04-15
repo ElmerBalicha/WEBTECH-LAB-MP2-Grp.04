@@ -18,6 +18,22 @@
                 </header>
             </div>
             <div class="box">
+            <div class="inputs">
+     
+<div id="sales_-1">
+<input type="text" placeholder="Item">
+<input type="text" placeholder="Quantity" id="addqty">
+
+<input type="button" id="inputButton" onclick="addSales()" value="+">
+</div>
+             
+
+<input type="submit" name="submit" onclick="onSales()" value="submit" id="inputButton">
+
+<a href="inventory.html">Back to Inventory</a>
+            </div>             
+               
+               
                 <div class="inputs">
                     <i class="fa fa-shopping-cart fa-4x"></i>
                     <input type="text" placeholder="Enter Item Name" id="soldItem">
@@ -32,7 +48,8 @@
                     </form>
                 </div>
                 <div class="click right">
-                    <button onclick="onUpdateOnSales()">Update</button>
+                    <button name="submit" onclick="onSales()" value="submit" id="inputButton">Update</button>
+                    
                 </div>
                 <div class="click right">
                     <form action="inventory.html">
@@ -42,5 +59,7 @@
             </div>   
         </section>
     </div>
+    
+    
 </body>
 </html>
