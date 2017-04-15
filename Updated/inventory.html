@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html manifest="inventory.manifest">
+<head>
+	<script type="text/javascript" src="main.js"></script>
+	<link rel="stylesheet" href="main.css">
+	<title>SLU Inventory | Your Inventory</title>
+</head>
+<body>
+<a href = "index.html">Home</a><br>
+<a href = "restock.html">Restock</a> <br>
+<a href = "salesInput.html">Sell Items</a> <br>
+<a href = "addItems.html">Add Items</a> <br>
+<a href = "updatePrice.html">Update Price</a> <br>
+<a href = "salesBreakdown.html">Sales Breakdown</a> <br>
+<a href = "lowQuantity.html">Items with critical quantity</a> <br>
+
+<br>
+<input type="text" id="searchInput" onkeyup="searchInv()" placeholder="Search">
+<table id="invTable">
+	<thead>
+	<tr>
+	<th>Items</th>
+	<th>Quantity</th>
+	<th>Price(PHP)</th>
+	<th>Minimum Quantity</th>
+	
+	</tr>
+	</thead>
+	<tbody id="tableBody">
+	</tbody>
+	</table>
+</body>
+</html>
