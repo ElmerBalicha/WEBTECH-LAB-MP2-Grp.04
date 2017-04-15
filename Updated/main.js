@@ -231,3 +231,124 @@ function Restock() {
 
 	}
 }
+function addSales() {
+	var div = document.createElement('div');
+	div.setAttribute('id', 'sales_'+myIndex);
+
+	var add_btn =document.getElementById('addSales');
+
+
+	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> - </button>';
+	document.getElementById('sales_-1').appendChild(div);
+
+	document.getElementById('sales_-1').insertBefore(div,add_btn);
+	myIndex++;
+}
+
+function removeSales(index) {
+	var a = document.getElementById('sales_-1');
+	var rmvDiv = document.getElementById('sales_'+index);
+
+	a.removeChild(rmvDiv);
+}
+
+function onSales() {
+	var origQuantityParse;
+	var itemLimitParse;
+	var origPriceParse;
+	var priceSoldParse;
+	var arr = [];
+	var remitArray = [];
+	var match = false;
+	var iden = false;
+	if (localStorage.ItemsAdded !== undefined) {
+		itemsArray = JSON.parse(localStorage.ItemsAdded);
+	}
+
+	var myIndex = -1;
+	var sellItems = document.getElementById('sales_'+myIndex);
+
+	for (i = 0; i <= sellItems.children.length; i++ ) {
+		if (i == 0) {
+			item = sellItems.children[0].value;
+				if (item == "") {
+					item = sellItems.children[0].select();
+					emptyInput();
+				}
+
+		}
+		if (i == 1) {
+			quantity = sellItems.children[1].value;
+			quantityParse = parseInt(quantity);
+				if (quantity == "") {
+					quantity = sellItems.children[1].select();
+					emptyInput();
+				}
+					if (isNaN(quantity)) {
+						quantity = sellItems.children[1].select();
+						notNumber();
+					} 
+						for (var c = 0; c < itemsArray.length; c++) {
+							if (item == itemsArray[c].Item) {
+								origQuantityParse = parseInt(itemsArray[c].Quantity);
+								itemLimitParse = parseInt(itemsArray[c].Limit);
+								if (origQuantityParse < quantityParse) {
+									item = sellItems.children[0].select();
+									soldIsGreater();
+								}
+								origQuantityParse -= quantityParse;
+								itemsArray[c].Quantity = origQuantityParse;
+								match = true;
+				} 
+			}
+							if (!match) {
+								item = sellItems.children[0].select();
+								noMatch();
+							}	
+							match = false;
+
+							for (var c = 0; c < itemsArray.length; c++) {
+								if (item == itemsArray[c].Item) {
+									origPriceParse = parseInt(itemsArray[c].Price);
+									priceSoldParse = parseInt(itemsArray[c].Price);
+									quantityParse = parseInt(quantity);
+									priceSoldParse *= quantityParse;
+									iden = true;
+									arr[c] = priceSoldParse;
+									if(localStorage.remitToAccounting !== undefined) {
+										remitArray = JSON.parse(localStorage.remitToAccounting);
+									}
+								}
+								if (iden == true) {
+									var remitObj = {'itemsold': item, 'soldquantity': quantity, 'origPrice': origPriceParse, 'pricesold': priceSoldParse};
+
+									remitArray.push(remitObj);
+									localStorage.remitToAccounting = JSON.stringify(remitArray);
+									iden = false;
+
+			}
+		}
+	}
+
+		if (i >= 2) {
+			myIndex++;
+			sellItems = document.getElementById('sales_'+myIndex);
+			i = -1;
+			if (sellItems == null) {
+				localStorage.ItemsAdded = JSON.stringify(itemsArray);
+
+				if (origQuantityParse <= itemLimitParse) {
+						alert("Success! Item(s) has been sold. There are item(s) in critical quantity...");
+						window.location = "lowQuantity.html"
+						break;
+					} else {
+							alert("Success! Item(s) has been sold. Redirecting to your sales...");
+							window.location = "remit.html";
+							break;
+				}
+			}
+			continue;
+	} 
+
+	}
+}
