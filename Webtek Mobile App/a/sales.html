@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SLU</title>
     <meta charset="utf-8">
@@ -9,39 +10,25 @@
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript" src="../main.js"></script>
 </head>
+
 <body>
     <div class="wrapper">
         <section class="second">
             <div class="HBG">
                 <header>
-                    <h1>BOOKSTORE MANAGER</h1>
-                </header>
+                    <h1>BOOKSTORE MANAGER</h1> </header>
             </div>
             <div class="box">
-            <div class="inputs">
-     
-<div id="sales_-1">
-<input type="text" placeholder="Item">
-<input type="text" placeholder="Quantity" id="addqty">
-
-<input type="button" id="inputButton" onclick="addSales()" value="+">
-</div>
-             
-
-<input type="submit" name="submit" onclick="onSales()" value="submit" id="inputButton">
-
-<a href="inventory.html">Back to Inventory</a>
-            </div>             
-               
-               
                 <div class="inputs">
-                    <i class="fa fa-shopping-cart fa-4x"></i>
-                    <input type="text" placeholder="Enter Item Name" id="soldItem">
+                    <div id="sales_-1">
+                        <input type="text" placeholder="Item">
+                        <input type="text" placeholder="Quantity"> </div>
                 </div>
-                <div class="inputs">
-                    <i class="fa fa-plus-circle fa-4x"></i>
-                    <input type="text" placeholder="Enter quantity sold" id="soldQuantity">
-                </div>
+                <div class="inputs"> <i type="button" onclick="addSales()" class="fa fa-plus-circle fa-4x"></i> </div>
+                <div class="inputs"> <i class="fa fa-shopping-cart fa-4x"></i>
+                    <input type="text" placeholder="Enter Item Name" id="soldItem"> </div>
+                <div class="inputs"> <i class="fa fa-plus-circle fa-4x"></i>
+                    <input type="text" placeholder="Enter quantity sold" id="soldQuantity"> </div>
                 <div class="click">
                     <form action="../index.html">
                         <button>Back</button>
@@ -49,17 +36,15 @@
                 </div>
                 <div class="click right">
                     <button name="submit" onclick="onSales()" value="submit" id="inputButton">Update</button>
-                    
                 </div>
                 <div class="click right">
                     <form action="inventory.html">
                         <button>Inventory</button>
                     </form>
                 </div>
-            </div>   
+            </div>
         </section>
     </div>
-    
-    
 </body>
+
 </html>

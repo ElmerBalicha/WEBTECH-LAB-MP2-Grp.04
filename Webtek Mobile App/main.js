@@ -331,7 +331,7 @@ function addRestock() {
 	var add_btn =document.getElementById('addRestock');
 
 
-	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
+	div.innerHTML = '<input type="text" placeholder="Item Name"><input type="text" placeholder="Quantity"><button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
 	document.getElementById('res_-1').appendChild(div);
 
 	document.getElementById('res_-1').insertBefore(div,add_btn);
@@ -418,7 +418,7 @@ function addSales() {
 	var add_btn =document.getElementById('addSales');
 
 
-	div.innerHTML = '<div id="sales_-1"><input type="text" placeholder="Item"><input type="text" placeholder="Quantity" id="addqty"> <button id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> - </button></div>';
+	div.innerHTML = '<div id="sales_-1"><input type="text" placeholder="Item"><input type="text" placeholder="Quantity"> <button id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> - </button></div>';
 	document.getElementById('sales_-1').appendChild(div);
 
 	document.getElementById('sales_-1').insertBefore(div,add_btn);
@@ -565,7 +565,7 @@ function addPrice() {
 	var add_btn =document.getElementById('addPrice');
 
 
-	div.innerHTML = 'Item: <input type="text"> Price: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> - </button>';
+	div.innerHTML = '<input type="text" placeholder="Item"><input type="text" placeholder="Price"> <button id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> - </button>';
 	document.getElementById('pri_-1').appendChild(div);
 
 	document.getElementById('pri_-1').insertBefore(div,add_btn);
