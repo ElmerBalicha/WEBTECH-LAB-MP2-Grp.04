@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="inventory.manifest">
 <head>
     <title>SLU</title>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <link href="../style.css" rel="stylesheet" type="text/css" media="all">
     <link href="fonts.css" rel="stylesheet" type="text/css" media="all">
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
-    <script type="text/javascript" src="../main.js  "></script>
+    <script type="text/javascript" src="../main.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -17,33 +17,36 @@
                     <h1>BOOKSTORE MANAGER</h1>
                 </header>
             </div>
-                <div class="box">
-                    <div class="inputs">
-                        <i class="fa fa-shopping-cart fa-4x"></i>
-                        <input type="text" placeholder="Enter Item Name" id="itemName">
-                    </div>
-                    <div class="inputs">
-                        <i class="fa fa-plus-circle fa-4x"></i>
-                        <input type="text" placeholder="Enter quantity" id="quantity">
-                    </div>
-                    <div class="inputs">
-                        <i class="fa fa-money fa-4x"></i>
-                        <input type="text" placeholder="Enter Item Price" id="price">
-                    </div>
-                    <div class="click">
-                        <form action="../index.html">
-                            <button>Back</button>
-                        </form>
-                    </div>
-                    <div class="click right">
-                        <button onclick="saveAddedItems()">Save</button>
-                    </div>
-                    <div class="click right">
-                        <form action="inventory.html">
-                            <button>Inventory</button>
-                        </form>
+            
+            <div class="box">
+                <div class="inputs">
+                    <div id="div_-1">
+                        <input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name">
+                        <input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity">
+                        <input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price">
+                        <input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity">
+                        
                     </div>
                 </div>
+            </div>
+            <div class="inputs plus">
+                <button onclick="add()">Add one more..</button>
+            </div> 
+            <div class="fix">
+                <div class="click">
+                    <form action="../index.html">
+                        <button>Back</button>
+                    </form>
+                </div>
+                <div class="click right">
+                    <button onclick="save()">Save</button>
+                </div>
+                <div class="click right">
+                    <form action="inventory.html">
+                        <button>Inventory</button>
+                    </form>
+                </div>
+            </div>
         </section>
     </div>    
 </body>
