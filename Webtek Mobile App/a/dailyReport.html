@@ -17,28 +17,29 @@
                     <h1>BOOKSTORE MANAGER</h1>
                 </header>
             </div>
-            <div class="box">
-                <div class="inputs">
-                    <i class="fa fa-shopping-cart fa-4x"></i>
-                    <input type="text" placeholder="Enter Item Name" id="searchItemName">
-                </div>
-                <div class="inputs">
-                    <i class="fa fa-plus-circle fa-4x"></i>
-                    <input type="text" placeholder="Enter New quantity" id="newQuantity">
-                </div>
-                <div class="click">
-                    <form action="../index.html">
-                        <button>Back</button>
-                    </form>
-                </div>
-                <div class="click right">
-                    <button onclick="onUpdateQuantity()">Update</button>
-                </div>
-                <div class="click right">
-                    <form action="inventory.html">
-                        <button>Inventory</button>
-                    </form>
-                </div>
+            <div class="search">
+                <input type="text" id="searchInput" onkeyup="searchSales()" placeholder="&nbsp;&#xf002;&nbsp; Search Item">
+            </div>
+            <table id="remitTable">
+                <thead>
+                    <tr>
+                        <th id='itemR'>Items</th>
+                        <th id='quantityR'>Quantity</th>
+                        <th id='priceO'>Price per Item</th>
+                        <th id= priceR>Total Price(PHP)</th>
+                        <th id="dateSold">Date Sold</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="click">
+                <form action="../index.html">
+                    <button>Back</button>
+                </form>
+            </div>
+            <div class="click right">
+                <form action="inventory.html">
+                    <button>Inventory</button>
+                </form>
             </div>
         </section>
     </div>    
