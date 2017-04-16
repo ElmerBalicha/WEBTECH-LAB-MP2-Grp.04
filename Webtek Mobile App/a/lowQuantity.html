@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head manifest="inventory.manifest">
+    <title>SLU</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="../main.js"></script>
+</head>
+<body onload="low()">
+    <div class="wrapper">
+        <section class="second">
+            <div class="HBG">
+                <header>
+                    <h1>BOOKSTORE MANAGER</h1>
+                </header>
+            </div>
+            <div class="search">
+                <input type="text" id="searchInput" onkeyup="searchInv()" placeholder="&nbsp;&#xf002;&nbsp; Search Item">
+            </div>
+            <h1 id="noResult"> </h1>
+            <div id="loQ">
+                <table id="lowTable">
+                    <thead>
+                    <tr>
+                        <th id='itemQ'></th>
+                        <th id='quantityQ'></th>
+                        <th id= priceQ></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="click">
+                <form action="../index.html">
+                    <button>Back</button>
+                </form>
+            </div>
+        </section> 
+    </div>    
+</body>
+</html>
