@@ -653,7 +653,7 @@ function pullInventory() {
 			var inventory = JSON.parse(xhr.responseText);
 			localStorage.ItemsAdded = JSON.stringify(inventory);
 			alert("Success! Redirecting to your inventory...");
-			window.location = "inventory.html";
+			window.location = "a/inventory.html";
 		} else {
 			alert("Error encountered while pulling your inventory");
 		}
