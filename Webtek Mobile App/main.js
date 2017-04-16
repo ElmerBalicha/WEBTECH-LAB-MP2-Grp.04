@@ -578,7 +578,7 @@ function onSales() {
 						break;
 					} else {
 							alert("Success! Item(s) has been sold. Redirecting to your sales...");
-							window.location = "salesBreakdown.html";
+							window.location = "a/salesBreakdown.html";
 							break;
 				}
 			}
@@ -692,7 +692,7 @@ function updatePrice() {
 	}
 }
 function pullInventory() {
-	var xhr = new XMLHttpRequest();	
+	var xhr = new XMLHttpRequest();
 	try {
 		xhr.open("GET", "inventory.txt", false);
 		xhr.send(null);
@@ -700,7 +700,7 @@ function pullInventory() {
 			var inventory = JSON.parse(xhr.responseText);
 			localStorage.ItemsAdded = JSON.stringify(inventory);
 			alert("Success! Redirecting to your inventory...");
-			window.location = "inventory.html";
+			window.location = "a/inventory.html";
 		} else {
 			alert("Error encountered while pulling your inventory");
 		}
@@ -713,10 +713,11 @@ function pushInventory() {
 	if (localStorage.ItemsAdded == undefined) {
 		alert("Your inventory is empty! Nothing to push");
 	} else {
-		var xmlhttp = new XMLHttpRequest();   
+		var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "book_store_items.json", false);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(localStorage.getItem("ItemsAdded"));
+				alert("Success! Your inventory was pushed to the server");
 	}
 }
 function reportTable(itemsold, quantitySold, origPriceParse, priceSoldParse, dateTime) {

@@ -368,50 +368,50 @@ td:first-child{
 }
 
 #itemQ{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #quantityQ{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #priceQ{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #itemR{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 
 #quantityR{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #priceO{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #priceR{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
 
 #dateSold{
-    background: #2980b9;
+    background: #8b4513;
     color: #FFFFFF;
     padding: 10px;
 }
@@ -567,4 +567,9 @@ td:first-child{
         font-size: .7em;
     }
 
+}
+
+.nodata {
+    color: black;
+    margin-left: 20px;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="inventory.manifest">
+<html>
 <head>
     <title>SLU</title>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript" src="../main.js  "></script>
 </head>
-<body onload="initReport()">
+<body onload="breakdown()">
     <div class="wrapper">
         <section class="second">
             <div class="HBG">
@@ -17,19 +17,21 @@
                     <h1>BOOKSTORE MANAGER</h1>
                 </header>
             </div>
-            <table id="reportTable">
+            <div class="search">
+                <input type="text" id="searchInput" onkeyup="searchSales()" placeholder="&nbsp;&#xf002;&nbsp; Search Item">
+            </div>
+            <table id="remitTable">
                 <thead>
                     <tr>
-                        <th id='itemReport'>Items</th>
-	<th id='quantityReport'>Quantity</th>
-	<th id='priceOrigReport'>Price per Item</th>
-	<th id= 'priceReport'>Total Price(PHP)</th>
-	<th id= 'dateReport'>Date Sold</th>
+                        <th id='itemR'>Items</th>
+                        <th id='quantityR'>Quantity</th>
+                        <th id='priceO'>Price per Item</th>
+                        <th id= priceR>Total Price(PHP)</th>
+                        <th id="dateSold">Date Sold</th>
                     </tr>
                 </thead>
             </table>
-            <h1 id="reportSales" class="nodata"></h1>
-            
+            <h1 id="remitThisOne" class="nodata"></h1>
             <div class="click">
                 <form action="../index.html">
                     <button>Back</button>
