@@ -1,16 +1,17 @@
 var myIndex = 0;
+var dateToday;
+var dateTime;
 function add() {
 	var div = document.createElement('div');
 	div.setAttribute('id', 'div_'+myIndex);
-    var hrr = document.createElement('hr');
-    
-	var add_btn =document.getElementById('add');
-    
-	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price"><input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
-    
-	document.getElementById('div_-1').appendChild(div);	document.getElementById('div_-1').insertBefore(div,add_btn);
-    document.getElementById('div_-1').insertBefore(div,hrr);
 
+	var add_btn =document.getElementById('add');
+
+
+	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price"><input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
+	document.getElementById('div_-1').appendChild(div);
+
+	document.getElementById('div_-1').insertBefore(div,add_btn);
 	myIndex++;
 }
 
@@ -37,16 +38,35 @@ function soldIsGreater() {
 	alert("No more available stock!");
 	throw new Error("No more available stock!");		
 }
+function existingItem() {
+	alert("This item exists!");
+	throw new Error("The item you want to add exists")
+}
 
 function init() {
 	if (localStorage.ItemsAdded) {
 		itemsArray = JSON.parse(localStorage.ItemsAdded);
 		document.getElementById("tableBody").innerHTML = "";
 		for(var i = 0; i < itemsArray.length; i++) {
-			tableInv(itemsArray[i].Item, itemsArray[i].Quantity, itemsArray[i].Price, itemsArray[i].Limit);
+			tableInv(itemsArray[i].Item, itemsArray[i].Quantity, itemsArray[i].Price, itemsArray[i].Limit, itemsArray[i].DateAdded);
 
 		}
 
+	}
+}
+function Remittance() {
+dateToday = new Date(); 
+var hour =  dateToday.getHours();  
+var min =  dateToday.getMinutes();
+var rem = document.getElementById('remitNa');
+var s = 0;
+	if (hour == 17) {
+	 		remitArray = JSON.parse(localStorage.remitToAccounting);
+			for (var c = 0; c < remitArray.length; c++) {
+				var a = parseInt(remitArray[c].pricesold);
+				s += a;
+				rem.innerHTML = "Please remit to accounting office: PHP "+s;
+			}
 	}
 }
 function low() {
@@ -86,23 +106,78 @@ function limitTable(item, quantity, price) {
 
 var sum = 0;
 function breakdown() {
+dateToday = new Date(); 
+dateTime = 	dateToday.getDate() + "/"
+                + (dateToday.getMonth()+1)  + "/" 
+                + dateToday.getFullYear() + " @ "  
+                + dateToday.getHours() + ":"  
+                + dateToday.getMinutes() + ":" 
+                + dateToday.getSeconds();
+          if (dateToday.getHours() >= 17 && dateToday.getHours() <= 23) {
+			document.getElementById("remitThisOne").innerHTML = "No transactions at the moment";
+			document.getElementById("itemR").innerHTML = "";
+			document.getElementById("quantityR").innerHTML = "";
+			document.getElementById("priceO").innerHTML = "";
+			document.getElementById("priceR").innerHTML = "";
+			document.getElementById("dateSold").innerHTML = "";
+
+
+          } else {
+
 		 if (localStorage.remitToAccounting) {
 	 		remitArray = JSON.parse(localStorage.remitToAccounting);
 			for (var c = 0; c < remitArray.length; c++) {
 				var a = parseInt(remitArray[c].pricesold);
 				sum += a;
-				document.getElementById("remitThisOne").innerHTML = "Total Sales as of : PHP " +sum;
+				document.getElementById("remitThisOne").innerHTML = "Total sales as of "+dateTime+": <br>PHP " +sum;
 
-				remitTable(remitArray[c].itemsold, remitArray[c].soldquantity, remitArray[c].origPrice, remitArray[c].pricesold);
+				remitTable(remitArray[c].itemsold, remitArray[c].soldquantity, remitArray[c].origPrice, remitArray[c].pricesold, remitArray[c].DateSold);
 			}
 		} else {
-			document.getElementById("remitThisOne").innerHTML = "No sales at the moment";
+			document.getElementById("remitThisOne").innerHTML = "No transactions at the moment";
 			document.getElementById("itemR").innerHTML = "";
 			document.getElementById("quantityR").innerHTML = "";
 			document.getElementById("priceR").innerHTML = "";
+			document.getElementById("priceO").innerHTML = "";
+			document.getElementById("dateSold").innerHTML = "";
 
+			}
 		}
 
+}
+function initReport() {
+var total = 0;
+dateToday = new Date(); 
+dateTime = 	dateToday.getDate() + "/"
+                + (dateToday.getMonth()+1)  + "/" 
+                + dateToday.getFullYear() + " @ "  
+                + dateToday.getHours() + ":"  
+                + dateToday.getMinutes() + ":" 
+                + dateToday.getSeconds();
+
+	if (dateToday.getHours() >= 17 && dateToday.getHours() <= 23) {
+		 if (localStorage.remitToAccounting) {
+	 		remitArray = JSON.parse(localStorage.remitToAccounting);
+			for (var counter = 0; counter < remitArray.length; counter++) {
+				var a = parseInt(remitArray[counter].pricesold);
+				total += a;
+				document.getElementById("reportSales").innerHTML = "Total sales for the day: PHP " +total;
+
+				reportTable(remitArray[counter].itemsold, remitArray[counter].soldquantity, remitArray[counter].origPrice, remitArray[counter].pricesold, remitArray[counter].DateSold);
+			}
+		}
+	} else {
+		document.getElementById("reportSales").innerHTML = "Transaction report will be generated at 5:00pm";
+		document.getElementById("itemReport").innerHTML = "";
+		document.getElementById("quantityReport").innerHTML = "";
+		document.getElementById("priceReport").innerHTML = "";
+		document.getElementById("priceOrigReport").innerHTML = "";
+		document.getElementById("dateReport").innerHTML = "";
+
+	} 
+		if (dateToday.getHours() == 0) {
+	        localStorage.removeItem("remitToAccounting");
+	}
 }
 
 window.onload = function() {
@@ -111,6 +186,14 @@ window.onload = function() {
 var itemsArray = [];
 
 function save() {
+dateToday = new Date(); 
+dateTime = 	dateToday.getDate() + "/"
+                + (dateToday.getMonth()+1)  + "/" 
+                + dateToday.getFullYear() + " @ "  
+                + dateToday.getHours() + ":"  
+                + dateToday.getMinutes() + ":" 
+                + dateToday.getSeconds();
+
 	var item;
 	var quantity;
 	var price;
@@ -129,6 +212,14 @@ function save() {
 			for (count = 0; count <= subDiv.children.length; count++) {
 				if (count == 0) {
 					item = subDiv.children[0].value;
+						for (x = 0; x < itemsArray.length; x++) {
+							var itemsInLS = itemsArray[x].Item;
+							if (item == itemsInLS) {
+								subDiv.children[0].select();
+								existingItem();
+							} 
+						}
+
 						if (item == "") {
 							subDiv.children[0].select();
 							emptyInput();
@@ -181,20 +272,20 @@ function save() {
 						}
 				}
 
-
 				if (count == 4) {
 
 				var itemObj = {
 					'Item': item,
 					'Quantity': quantity,
 					'Price': price,
-					'Limit': limit
+					'Limit': limit,
+					'DateAdded': dateTime
 				}
 
 					itemsArray.push(itemObj);
 				}
 
-				if (count >= 5) {
+				if (count >= 4) {
 					myIndex++;
 					subDiv = document.getElementById('div_'+myIndex);
 					count = -1;
@@ -207,18 +298,19 @@ function save() {
 
 					} else {
 						alert("Item(s) was not added in your inventory");
+						window.location = "addItems.html";
 						break;
 					}
 						init();
 					}
 					continue;
-		} 
+				}
 	}
 	
 }
 
 
-function tableInv(item, quantity, price, limit) {
+function tableInv(item, quantity, price, limit, dateTime) {
 
 	var table = document.getElementById('tableBody');
 	var row = table.insertRow();
@@ -226,7 +318,8 @@ function tableInv(item, quantity, price, limit) {
 	var quantityCell = row.insertCell(1);
 	var priceCell = row.insertCell(2);
 	var limitCell = row.insertCell(3);
-	var optionCell = row.insertCell(4);
+	var dateCell = row.insertCell(4);
+	var optionCell = row.insertCell(5);
 	var table_len = (table.rows.length)-1;
 	row.setAttribute("id", "row"+table_len);
 
@@ -235,6 +328,8 @@ function tableInv(item, quantity, price, limit) {
 	quantityCell.innerHTML = quantity;
 	priceCell.innerHTML = price;
 	limitCell.innerHTML = limit;
+	dateCell.innerHTML = dateTime;
+
 	optionCell.innerHTML = '<input type = "button" value = "Delete" onclick = "delete_row('+table_len+')">';
 	
 	
@@ -363,7 +458,6 @@ function Restock() {
 
 	}
 }
-
 function addSales() {
 	var div = document.createElement('div');
 	div.setAttribute('id', 'sales_'+myIndex);
@@ -386,6 +480,14 @@ function removeSales(index) {
 }
 
 function onSales() {
+	dateToday = new Date(); 
+	dateTime = 	dateToday.getDate() + "/"
+	                + (dateToday.getMonth()+1)  + "/" 
+	                + dateToday.getFullYear() + " @ "  
+	                + dateToday.getHours() + ":"  
+	                + dateToday.getMinutes() + ":" 
+	                + dateToday.getSeconds();
+
 	var origQuantityParse;
 	var itemLimitParse;
 	var origPriceParse;
@@ -453,7 +555,7 @@ function onSales() {
 									}
 								}
 								if (iden == true) {
-									var remitObj = {'itemsold': item, 'soldquantity': quantity, 'origPrice': origPriceParse, 'pricesold': priceSoldParse};
+									var remitObj = {'itemsold': item, 'soldquantity': quantity, 'origPrice': origPriceParse, 'pricesold': priceSoldParse, 'DateSold': dateTime};
 
 									remitArray.push(remitObj);
 									localStorage.remitToAccounting = JSON.stringify(remitArray);
@@ -476,7 +578,7 @@ function onSales() {
 						break;
 					} else {
 							alert("Success! Item(s) has been sold. Redirecting to your sales...");
-							window.location = "remit.html";
+							window.location = "salesBreakdown.html";
 							break;
 				}
 			}
@@ -485,7 +587,7 @@ function onSales() {
 
 	}
 }
-function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse) {
+function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse, dateTime) {
 
 	var table = document.getElementById('remitTable');
 	var row = table.insertRow();
@@ -493,12 +595,15 @@ function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse) {
 	var quantitySoldCell = row.insertCell(1);
 	var priceOrigSoldCell = row.insertCell(2);
 	var priceSoldCell = row.insertCell(3);
+	var dateSoldCell = row.insertCell(4);
 
 
 	itemsoldCell.innerHTML = itemsold;
 	quantitySoldCell.innerHTML = quantitySold;
 	priceOrigSoldCell.innerHTML = origPriceParse;
 	priceSoldCell.innerHTML = priceSoldParse;
+	dateSoldCell.innerHTML = dateTime;
+
 }
 function addPrice() {
 	var div = document.createElement('div');
@@ -585,4 +690,88 @@ function updatePrice() {
 	} 
 
 	}
+}
+function pullInventory() {
+	var xhr = new XMLHttpRequest();	
+	try {
+		xhr.open("GET", "inventory.txt", false);
+		xhr.send(null);
+		if (xhr.status == 200) {
+			var inventory = JSON.parse(xhr.responseText);
+			localStorage.ItemsAdded = JSON.stringify(inventory);
+			alert("Success! Redirecting to your inventory...");
+			window.location = "inventory.html";
+		} else {
+			alert("Error encountered while pulling your inventory");
+		}
+	} catch (error) {
+			alert("Error encountered while pulling your inventory");
+		return;
+	}
+}
+function pushInventory() {
+	if (localStorage.ItemsAdded == undefined) {
+		alert("Your inventory is empty! Nothing to push");
+	} else {
+		var xmlhttp = new XMLHttpRequest();   
+        xmlhttp.open("POST", "book_store_items.json", false);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(localStorage.getItem("ItemsAdded"));
+	}
+}
+function reportTable(itemsold, quantitySold, origPriceParse, priceSoldParse, dateTime) {
+	var table = document.getElementById('reportTable');
+	var row = table.insertRow();
+	var itemsoldReportCell = row.insertCell(0);
+	var quantitySoldReportCell = row.insertCell(1);
+	var priceOrigSoldReportCell = row.insertCell(2);
+	var priceSoldReportCell = row.insertCell(3);
+	var dateSoldReportCell = row.insertCell(4);
+
+
+	itemsoldReportCell.innerHTML = itemsold;
+	quantitySoldReportCell.innerHTML = quantitySold;
+	priceOrigSoldReportCell.innerHTML = origPriceParse;
+	priceSoldReportCell.innerHTML = priceSoldParse;
+	dateSoldReportCell.innerHTML = dateTime;
+
+}
+function searchSales() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("remitTable");
+  tr = table.getElementsByTagName("tr");
+
+ 
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+
+function searchLow() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("lowTable");
+  tr = table.getElementsByTagName("tr");
+
+ 
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
 }
