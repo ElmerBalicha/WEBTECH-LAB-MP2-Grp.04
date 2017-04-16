@@ -2,13 +2,18 @@ body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #5DADE2;
+    background-color: #eed5b7;
     color: #FFFFFF;
 }
 
 body a{
     text-decoration: none;
-    color: #FFFFFF;
+    color: #8b4513;
+}
+
+.inner a {
+    text-decoration: none;
+    color: #8b4513 ;
 }
 
 .wrapper{
@@ -29,6 +34,7 @@ header{
 }
 
 .inner{
+    border-radius: 15px;
     width: 33%;
     float: left;
     text-align: center;
@@ -38,6 +44,11 @@ header{
     border-radius: 15px;
     width: 50%;
     margin: auto;
+}
+
+.bannerimg {
+    width: 100%;
+    height: 100px;
 }
 
 .innerWidth:hover{
@@ -52,16 +63,22 @@ header{
     font-size: 1.2em;
 }
 
+h2 {
+    color: white;
+}
+
 .second{
     margin-top: 20px;
-    background-color: #FFFFFF;
-    color: #5DADE2;
+    background-color: #fffaf0;
     float:left;
     width: 100%;
+    border-radius: 25px;
 }
 
 .HBG{
-    background-color: #21618C;
+    background-color: #8b4513;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 
@@ -90,6 +107,7 @@ header{
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold; 
+    margin-left: 10px;
     width: 60%;
 }
 
@@ -105,19 +123,19 @@ header{
 
 
 *::-webkit-input-placeholder {
-    color: #566573;
+    color: grey;
 }
 
 *:-moz-placeholder {
-    color: #566573;
+    color: grey;
 }
 
 *::-moz-placeholder {
-    color: #566573;
+    color: grey;
 }
 
 *:-ms-input-placeholder {
-    color: #566573;
+    color: grey;
 }
 
 select{
@@ -131,7 +149,7 @@ select{
 
 .inputs{
     float: left;
-    color: #21618C;
+    color: #8b4513;
 }
 
 .inputs hr{
@@ -227,7 +245,7 @@ td:first-child{
     font-weight: 900;
     text-align: left;
     color: #ffffff;
-    background: #2980b9;
+    background: #aa7243;
 }
 
 .cell {
