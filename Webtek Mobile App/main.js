@@ -2,12 +2,15 @@ var myIndex = 0;
 function add() {
 	var div = document.createElement('div');
 	div.setAttribute('id', 'div_'+myIndex);
-
+    var hrr = document.createElement('hr');
+    
 	var add_btn =document.getElementById('add');
     
-	div.innerHTML = '<div class="inputs"><hr></div><input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price"><input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> Remove </button><br><br>';
+	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price"><input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
     
 	document.getElementById('div_-1').appendChild(div);	document.getElementById('div_-1').insertBefore(div,add_btn);
+    document.getElementById('div_-1').insertBefore(div,hrr);
+
 	myIndex++;
 }
 
@@ -191,7 +194,7 @@ function save() {
 					itemsArray.push(itemObj);
 				}
 
-				if (count >= 4) {
+				if (count >= 5) {
 					myIndex++;
 					subDiv = document.getElementById('div_'+myIndex);
 					count = -1;
@@ -280,7 +283,7 @@ function addRestock() {
 	var add_btn =document.getElementById('addRestock');
 
 
-	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
+	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
 	document.getElementById('res_-1').appendChild(div);
 
 	document.getElementById('res_-1').insertBefore(div,add_btn);
@@ -368,7 +371,7 @@ function addSales() {
 	var add_btn =document.getElementById('addSales');
 
 
-	div.innerHTML = '<div class="inputs"><hr></div><input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> Remove </button><br><br>';
+	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
 	document.getElementById('sales_-1').appendChild(div);
 
 	document.getElementById('sales_-1').insertBefore(div,add_btn);
@@ -504,7 +507,7 @@ function addPrice() {
 	var add_btn =document.getElementById('addPrice');
 
 
-	div.innerHTML = '<div class="inputs"><hr></div><input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Price"><button style="float:none;"id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> Remove </button><br><br>';
+	div.innerHTML = '<input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Price"><button style="float:none;"id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> Remove </button><br><br><div class="inputs"><hr></div>';
 	document.getElementById('pri_-1').appendChild(div);
 
 	document.getElementById('pri_-1').insertBefore(div,add_btn);
