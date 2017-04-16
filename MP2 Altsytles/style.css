@@ -11,9 +11,9 @@ body a{
     color: #8b4513;
 }
 
-.bannerimg {
-    width: 100%;
-    height: 200px;
+.inner a {
+    text-decoration: none;
+    color: #8b4513 ;
 }
 
 .wrapper{
@@ -41,6 +41,11 @@ header{
     text-align: center;
 }
 
+.bannerimg {
+    width: 100%;
+    height: 100px;
+}
+
 .inner:hover{
     background-color: rgba(255,255,255,.7);
 }
@@ -53,17 +58,23 @@ header{
     font-size: 1.2em;
 }
 
+h2 {
+    color: white;
+}
+
 .second{
     margin-top: 20px;
     background-color: #fffaf0;
-    color: #5DADE2;
+    
     float:left;
     width: 100%;
     border-radius: 25px;
 }
 
 .HBG{
-    background-color: #21618C;
+    background-color: #8b4513;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 
@@ -85,8 +96,20 @@ header{
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold; 
-    width: 60%;
+    margin-left: 10px;
+    width: 30%;
 }
+
+#addqty {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold; 
+    margin-left: 10px;
+    width: 20%;
+}
+
 
 .search input[type=text]{
     font-family:FontAwesome;
@@ -127,7 +150,7 @@ select{
 .inputs{
     width: 100%;
     float: left;
-    color: #21618C;
+    color: #8b4513;
 }
 
 
@@ -169,6 +192,14 @@ button{
     border: 0px solid;
 }
 
+#inputButton {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5em;
+    border: 0px solid;
+    margin-left: 5px;
+}
+
 /* TABLES */
 table{
     background: #FFFFFF;
@@ -197,7 +228,7 @@ td:first-child{
     font-weight: 900;
     text-align: left;
     color: #ffffff;
-    background: #2980b9;
+    background: #aa7243;
 }
 
 .cell {
@@ -226,7 +257,4 @@ td:first-child{
     text-align: center;
 }
 
-.footer p{
-    background-color: black;
-}
 
