@@ -462,8 +462,12 @@ td:first-child{
         width: 40%;
     }
     
-    #invTable th {
+    #invTable{
         font-size: .8em;
+    }
+    
+    thead th:nth-of-type(3) {
+        display: none;
     }
     
     thead th:nth-of-type(4) {
@@ -474,6 +478,10 @@ td:first-child{
         display: none;
     }
     
+    
+    #invTable #tableBody td:nth-of-type(3) {
+        display: none;
+    }
     
     #invTable #tableBody td:nth-of-type(4) {
         display: none;
