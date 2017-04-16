@@ -249,7 +249,18 @@ td:first-child{
     background: #e9e9e9;
 }
 
+#lowTable tr {
+    display: table-row;
+    background: #f6f6f6;
+}
 
+#lowTable tr:nth-of-type(odd) {
+    background: #e9e9e9;
+}
+
+#lowTable hr{
+    
+}
 /* MESSAGE INPUT */
 .message{
     padding-top: 10%;
@@ -271,9 +282,54 @@ td:first-child{
 #div_-1 button{
     position: absolute
     float: left;
-    width: 10%;
+    width: 15%;
 }
 
+#sales_-1{
+    padding: 20px;
+    float: left;
+    margin: auto;
+    width: 90%;
+}
+
+#sales_-1 input[type=text]{
+    float: left;
+    width: 90%;
+}
+
+#sales_-1 button{
+    position: absolute
+    float: left;
+    width: 15%;
+}
+
+#noResult{
+    padding-left: 30px;
+    font-size: 2em;
+}
+
+#loQ{
+   width: 95%;
+    margin: auto;
+}
+
+#itemQ{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#quantityQ{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#priceQ{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
 
 @media(max-width: 420px){
     .wrapper.res{
@@ -334,6 +390,20 @@ td:first-child{
     }
     
     #div_-1 button{
+        margin-top: 15px;
+        font-size: .7em;
+        width: 30%;
+    }
+    
+    #sales_-1 input[type=text]{
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: .7em;; 
+        width: 70%;
+    }
+    
+    #sales_-1 button{
         margin-top: 15px;
         font-size: .7em;
         width: 30%;
