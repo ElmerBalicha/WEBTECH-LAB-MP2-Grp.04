@@ -1,17 +1,13 @@
 var myIndex = 0;
-var dateToday;
-var dateTime;
 function add() {
 	var div = document.createElement('div');
 	div.setAttribute('id', 'div_'+myIndex);
 
 	var add_btn =document.getElementById('add');
-
-
-	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> Price: <input type="text"> Limit: <input type="text"> <button id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> - </button>';
-	document.getElementById('div_-1').appendChild(div);
-
-	document.getElementById('div_-1').insertBefore(div,add_btn);
+    
+	div.innerHTML = '<div class="inputs"><hr></div><input type="text" placeholder="&nbsp;&#xf290;&nbsp; Enter Item Name"><input type="text" placeholder="&nbsp;&#xf292;&nbsp; Enter Item Quantity"><input type="text" placeholder="&nbsp;&#xf0d6;&nbsp; Enter Item Price"><input type="text" placeholder="&nbsp;&#xf00d;&nbsp; Enter Minimun Quantity"><button style="float:none;"id="rmv_('+myIndex+')" onclick="remove('+myIndex+')"> Remove </button><br><br>';
+    
+	document.getElementById('div_-1').appendChild(div);	document.getElementById('div_-1').insertBefore(div,add_btn);
 	myIndex++;
 }
 
@@ -38,35 +34,16 @@ function soldIsGreater() {
 	alert("No more available stock!");
 	throw new Error("No more available stock!");		
 }
-function existingItem() {
-	alert("This item exists!");
-	throw new Error("The item you want to add exists")
-}
 
 function init() {
 	if (localStorage.ItemsAdded) {
 		itemsArray = JSON.parse(localStorage.ItemsAdded);
 		document.getElementById("tableBody").innerHTML = "";
 		for(var i = 0; i < itemsArray.length; i++) {
-			tableInv(itemsArray[i].Item, itemsArray[i].Quantity, itemsArray[i].Price, itemsArray[i].Limit, itemsArray[i].DateAdded);
+			tableInv(itemsArray[i].Item, itemsArray[i].Quantity, itemsArray[i].Price, itemsArray[i].Limit);
 
 		}
 
-	}
-}
-function Remittance() {
-dateToday = new Date(); 
-var hour =  dateToday.getHours();  
-var min =  dateToday.getMinutes();
-var rem = document.getElementById('remitNa');
-var s = 0;
-	if (hour == 17 && (min >= 0 && min <= 30)) {
-	 		remitArray = JSON.parse(localStorage.remitToAccounting);
-			for (var c = 0; c < remitArray.length; c++) {
-				var a = parseInt(remitArray[c].pricesold);
-				s += a;
-				rem.innerHTML = "Please remit to accounting: PHP "+s;
-			}
 	}
 }
 function low() {
@@ -106,22 +83,14 @@ function limitTable(item, quantity, price) {
 
 var sum = 0;
 function breakdown() {
-dateToday = new Date(); 
-dateTime = 	dateToday.getDate() + "/"
-                + (dateToday.getMonth()+1)  + "/" 
-                + dateToday.getFullYear() + " @ "  
-                + dateToday.getHours() + ":"  
-                + dateToday.getMinutes() + ":" 
-                + dateToday.getSeconds();
-
 		 if (localStorage.remitToAccounting) {
 	 		remitArray = JSON.parse(localStorage.remitToAccounting);
 			for (var c = 0; c < remitArray.length; c++) {
 				var a = parseInt(remitArray[c].pricesold);
 				sum += a;
-				document.getElementById("remitThisOne").innerHTML = "Total Sales as of "+dateTime+": <br>PHP " +sum;
+				document.getElementById("remitThisOne").innerHTML = "Total Sales as of : PHP " +sum;
 
-				remitTable(remitArray[c].itemsold, remitArray[c].soldquantity, remitArray[c].origPrice, remitArray[c].pricesold, remitArray[c].DateSold);
+				remitTable(remitArray[c].itemsold, remitArray[c].soldquantity, remitArray[c].origPrice, remitArray[c].pricesold);
 			}
 		} else {
 			document.getElementById("remitThisOne").innerHTML = "No sales at the moment";
@@ -139,14 +108,6 @@ window.onload = function() {
 var itemsArray = [];
 
 function save() {
-dateToday = new Date(); 
-dateTime = 	dateToday.getDate() + "/"
-                + (dateToday.getMonth()+1)  + "/" 
-                + dateToday.getFullYear() + " @ "  
-                + dateToday.getHours() + ":"  
-                + dateToday.getMinutes() + ":" 
-                + dateToday.getSeconds();
-
 	var item;
 	var quantity;
 	var price;
@@ -165,14 +126,6 @@ dateTime = 	dateToday.getDate() + "/"
 			for (count = 0; count <= subDiv.children.length; count++) {
 				if (count == 0) {
 					item = subDiv.children[0].value;
-						for (x = 0; x < itemsArray.length; x++) {
-							var itemsInLS = itemsArray[x].Item;
-							if (item == itemsInLS) {
-								subDiv.children[0].select();
-								existingItem();
-							} 
-						}
-
 						if (item == "") {
 							subDiv.children[0].select();
 							emptyInput();
@@ -225,20 +178,20 @@ dateTime = 	dateToday.getDate() + "/"
 						}
 				}
 
+
 				if (count == 4) {
 
 				var itemObj = {
 					'Item': item,
 					'Quantity': quantity,
 					'Price': price,
-					'Limit': limit,
-					'DateAdded': dateTime
+					'Limit': limit
 				}
 
 					itemsArray.push(itemObj);
 				}
 
-				if (count >= 5) {
+				if (count >= 4) {
 					myIndex++;
 					subDiv = document.getElementById('div_'+myIndex);
 					count = -1;
@@ -251,19 +204,18 @@ dateTime = 	dateToday.getDate() + "/"
 
 					} else {
 						alert("Item(s) was not added in your inventory");
-						window.location = "addItems.html";
 						break;
 					}
 						init();
 					}
 					continue;
-				}
+		} 
 	}
 	
 }
 
 
-function tableInv(item, quantity, price, limit, dateTime) {
+function tableInv(item, quantity, price, limit) {
 
 	var table = document.getElementById('tableBody');
 	var row = table.insertRow();
@@ -271,8 +223,7 @@ function tableInv(item, quantity, price, limit, dateTime) {
 	var quantityCell = row.insertCell(1);
 	var priceCell = row.insertCell(2);
 	var limitCell = row.insertCell(3);
-	var dateCell = row.insertCell(4);
-	var optionCell = row.insertCell(5);
+	var optionCell = row.insertCell(4);
 	var table_len = (table.rows.length)-1;
 	row.setAttribute("id", "row"+table_len);
 
@@ -281,8 +232,6 @@ function tableInv(item, quantity, price, limit, dateTime) {
 	quantityCell.innerHTML = quantity;
 	priceCell.innerHTML = price;
 	limitCell.innerHTML = limit;
-	dateCell.innerHTML = dateTime;
-
 	optionCell.innerHTML = '<input type = "button" value = "Delete" onclick = "delete_row('+table_len+')">';
 	
 	
@@ -331,7 +280,7 @@ function addRestock() {
 	var add_btn =document.getElementById('addRestock');
 
 
-	div.innerHTML = '<input type="text" placeholder="Item Name"><input type="text" placeholder="Quantity"><button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
+	div.innerHTML = 'Item: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeRestock('+myIndex+')"> - </button>';
 	document.getElementById('res_-1').appendChild(div);
 
 	document.getElementById('res_-1').insertBefore(div,add_btn);
@@ -418,7 +367,7 @@ function addSales() {
 	var add_btn =document.getElementById('addSales');
 
 
-	div.innerHTML = '<div id="sales_-1"><input type="text" placeholder="Item"><input type="text" placeholder="Quantity"> <button id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> - </button></div>';
+	div.innerHTML = 'Iasdasdastem: <input type="text"> Quantity: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removeSales('+myIndex+')"> - </button>';
 	document.getElementById('sales_-1').appendChild(div);
 
 	document.getElementById('sales_-1').insertBefore(div,add_btn);
@@ -433,14 +382,6 @@ function removeSales(index) {
 }
 
 function onSales() {
-	dateToday = new Date(); 
-	dateTime = 	dateToday.getDate() + "/"
-	                + (dateToday.getMonth()+1)  + "/" 
-	                + dateToday.getFullYear() + " @ "  
-	                + dateToday.getHours() + ":"  
-	                + dateToday.getMinutes() + ":" 
-	                + dateToday.getSeconds();
-
 	var origQuantityParse;
 	var itemLimitParse;
 	var origPriceParse;
@@ -508,7 +449,7 @@ function onSales() {
 									}
 								}
 								if (iden == true) {
-									var remitObj = {'itemsold': item, 'soldquantity': quantity, 'origPrice': origPriceParse, 'pricesold': priceSoldParse, 'DateSold': dateTime};
+									var remitObj = {'itemsold': item, 'soldquantity': quantity, 'origPrice': origPriceParse, 'pricesold': priceSoldParse};
 
 									remitArray.push(remitObj);
 									localStorage.remitToAccounting = JSON.stringify(remitArray);
@@ -531,7 +472,7 @@ function onSales() {
 						break;
 					} else {
 							alert("Success! Item(s) has been sold. Redirecting to your sales...");
-							window.location = "salesBreakdown.html";
+							window.location = "remit.html";
 							break;
 				}
 			}
@@ -540,7 +481,7 @@ function onSales() {
 
 	}
 }
-function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse, dateTime) {
+function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse) {
 
 	var table = document.getElementById('remitTable');
 	var row = table.insertRow();
@@ -548,15 +489,12 @@ function remitTable(itemsold, quantitySold, origPriceParse, priceSoldParse, date
 	var quantitySoldCell = row.insertCell(1);
 	var priceOrigSoldCell = row.insertCell(2);
 	var priceSoldCell = row.insertCell(3);
-	var dateSoldCell = row.insertCell(4);
 
 
 	itemsoldCell.innerHTML = itemsold;
 	quantitySoldCell.innerHTML = quantitySold;
 	priceOrigSoldCell.innerHTML = origPriceParse;
 	priceSoldCell.innerHTML = priceSoldParse;
-	dateSoldCell.innerHTML = dateTime;
-
 }
 function addPrice() {
 	var div = document.createElement('div');
@@ -565,7 +503,7 @@ function addPrice() {
 	var add_btn =document.getElementById('addPrice');
 
 
-	div.innerHTML = '<input type="text" placeholder="Item"><input type="text" placeholder="Price"> <button id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> - </button>';
+	div.innerHTML = 'Item: <input type="text"> Price: <input type="text"> <button id="rmv_('+myIndex+')" onclick="removePrice('+myIndex+')"> - </button>';
 	document.getElementById('pri_-1').appendChild(div);
 
 	document.getElementById('pri_-1').insertBefore(div,add_btn);
@@ -642,23 +580,5 @@ function updatePrice() {
 			continue;
 	} 
 
-	}
-}
-function pullInventory() {
-	var xhr = new XMLHttpRequest();	
-	try {
-		xhr.open("GET", "inventory.txt", false);
-		xhr.send(null);
-		if (xhr.status == 200) {
-			var inventory = JSON.parse(xhr.responseText);
-			localStorage.ItemsAdded = JSON.stringify(inventory);
-			alert("Success! Redirecting to your inventory...");
-			window.location = "a/inventory.html";
-		} else {
-			alert("Error encountered while pulling your inventory");
-		}
-	} catch (error) {
-			alert("Error encountered while pulling your inventory");
-		return;
 	}
 }
