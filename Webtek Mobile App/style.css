@@ -367,6 +367,37 @@ td:first-child{
     padding: 10px;
 }
 
+#itemR{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+
+#quantityR{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#priceO{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#priceR{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#dateSold{
+    background: #2980b9;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
 @media(max-width: 420px){
     .wrapper.res{
         width: 90%;
