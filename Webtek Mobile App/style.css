@@ -321,6 +321,24 @@ td:first-child{
     width: 15%;
 }
 
+#res_-1{
+    padding: 20px;
+    float: left;
+    margin: auto;
+    width: 90%;
+}
+
+#res_-1 input[type=text]{
+    float: left;
+    width: 90%;
+}
+
+#res_-1 button{
+    position: absolute
+    float: left;
+    width: 15%;
+}
+
 #noResult{
     padding-left: 30px;
     font-size: 2em;
@@ -432,6 +450,20 @@ td:first-child{
     }
     
     #pri_-1 button{
+        margin-top: 15px;
+        font-size: .7em;
+        width: 30%;
+    }
+    
+    #res_-1 input[type=text]{
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: .7em;; 
+        width: 70%;
+    }
+    
+    #res_-1 button{
         margin-top: 15px;
         font-size: .7em;
         width: 30%;
