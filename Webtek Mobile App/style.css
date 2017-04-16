@@ -2,18 +2,13 @@ body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #eed5b7;
+    background-color: #5DADE2;
     color: #FFFFFF;
 }
 
 body a{
     text-decoration: none;
-    color: #8b4513;
-}
-
-.inner a {
-    text-decoration: none;
-    color: #8b4513 ;
+    color: #FFFFFF;
 }
 
 .wrapper{
@@ -30,23 +25,22 @@ header{
     width: 100%;
     text-align: center;
     margin: auto;
-    float:left;
     display: table;
 }
 
 .inner{
-    border-radius: 15px;
     width: 33%;
     float: left;
     text-align: center;
 }
 
-.bannerimg {
-    width: 100%;
-    height: 100px;
+.innerWidth{
+    border-radius: 15px;
+    width: 50%;
+    margin: auto;
 }
 
-.inner:hover{
+.innerWidth:hover{
     background-color: rgba(255,255,255,.7);
 }
 
@@ -58,23 +52,16 @@ header{
     font-size: 1.2em;
 }
 
-h2 {
-    color: white;
-}
-
 .second{
     margin-top: 20px;
-    background-color: #fffaf0;
-    
+    background-color: #FFFFFF;
+    color: #5DADE2;
     float:left;
     width: 100%;
-    border-radius: 25px;
 }
 
 .HBG{
-    background-color: #8b4513;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    background-color: #21618C;
 }
 
 
@@ -90,26 +77,21 @@ h2 {
 }
 
 /* INPUTS */
+
+.inputs{
+    padding: 10px;
+    width: 100%;
+}
+
 .inputs input[type=text]{
+    font-family:FontAwesome;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold; 
-    margin-left: 10px;
-    width: 30%;
+    width: 60%;
 }
-
-#addqty {
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: bold; 
-    margin-left: 10px;
-    width: 20%;
-}
-
 
 .search input[type=text]{
     font-family:FontAwesome;
@@ -118,7 +100,7 @@ h2 {
     margin: 20px;
     font-size: 20px;
     font-weight: bold; 
-    width: 20%;
+    width: 40%;
 }
 
 
@@ -148,11 +130,16 @@ select{
 }
 
 .inputs{
-    width: 100%;
     float: left;
-    color: #8b4513;
+    color: #21618C;
 }
 
+.inputs hr{
+    margin-left: 0%;
+    width: 100%;
+    height: 2px;
+    background-color: cadetblue;
+}
 
 .inputs h1{
     margin: 0;
@@ -161,16 +148,36 @@ select{
 }
 
 .inputs i{
-    
     margin: auto;
     float: left;
-    margin-top: 40px;
+    width: 67px;
+    margin-top: 10px;
     padding: 10px;
 }
 
 .inputs input{
-    margin-top: 50px;
+    margin-top: 20px;
     float: left;
+}
+
+.inputs.plus{
+    margin: 20px;
+    margin-top: -40px;
+}
+
+.inputs.plus i{
+    margin-top: 5px;
+}
+
+.inputs.plus button{
+    margin-top: 25px;
+    font-size: 1.3em;
+}
+
+/*FIX*/
+.fix{
+    float: left;
+    width: 100%;
 }
 
 /*CLICK*/
@@ -190,14 +197,6 @@ button{
     padding: 10px;
     font-size: 1.5em;
     border: 0px solid;
-}
-
-#inputButton {
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1.5em;
-    border: 0px solid;
-    margin-left: 5px;
 }
 
 /* TABLES */
@@ -228,7 +227,7 @@ td:first-child{
     font-weight: 900;
     text-align: left;
     color: #ffffff;
-    background: #aa7243;
+    background: #2980b9;
 }
 
 .cell {
@@ -257,4 +256,107 @@ td:first-child{
     text-align: center;
 }
 
+#div_-1{
+    padding: 20px;
+    float: left;
+    margin: auto;
+    width: 90%;
+}
 
+#div_-1 input[type=text]{
+    float: left;
+    width: 90%;
+}
+
+#div_-1 button{
+    position: absolute
+    float: left;
+    width: 10%;
+}
+
+
+@media(max-width: 420px){
+    .wrapper.res{
+        width: 90%;
+    }
+    
+    .innerWidth:hover{
+        background-color: transparent;
+    }
+    .innerWidth i{
+        font-size: 3em;
+    }
+    
+    .innerWidth h1{
+        width: 100%;
+        float: none;
+        text-align: center;
+        font-size: .9em;
+    }
+    
+    .click{
+        padding: 10px;
+    }
+    
+    .click.right{
+        float: left;
+    }
+    
+    button{
+        border-radius: 5px;
+        padding: 10px;
+        font-size: .7em;
+        border: 0px solid;
+    }
+
+    .inputs input[type=text]{
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+        font-size: .7em;; 
+        width: 65%;
+    }
+    
+    .search input[type=text]{
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: .7em;; 
+        width: 40%;
+    }
+    
+    #div_-1 input[type=text]{
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: .7em;; 
+        width: 70%;
+    }
+    
+    #div_-1 button{
+        margin-top: 15px;
+        font-size: .7em;
+        width: 30%;
+    }
+    
+    .inputs hr{
+        margin-left: -9%;
+        width: 100%
+    }
+    
+    .inputs i{
+        margin-top: 10px;
+        width: 30px;
+        font-size: 2em;
+    }
+    
+    .inputs.plus i{
+        margin-top: 5px;
+    }
+
+    .inputs.plus button{
+        margin-top: 15px;
+        font-size: .7em;
+    }
+
+}
