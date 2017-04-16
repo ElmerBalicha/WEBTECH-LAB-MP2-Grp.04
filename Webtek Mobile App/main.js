@@ -578,7 +578,7 @@ function onSales() {
 						break;
 					} else {
 							alert("Success! Item(s) has been sold. Redirecting to your sales...");
-							window.location = "a/salesBreakdown.html";
+							window.location = "salesBreakdown.html";
 							break;
 				}
 			}
